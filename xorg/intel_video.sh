@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 
-#!/usr/bin/env sh
-
 p="pkg.txt"
+I_dkms=$(doas sysrc kld_list+=i915kms)
 
+Install_video() {
 if [ ! -f "$p" ]; then
     echo "file not found"
     exit 1
@@ -24,4 +24,7 @@ do
         echo "Successfully installed: $pkg"
     fi
 done < "$p"
-
+$I_dkms
+exit 0
+}
+Install_video
