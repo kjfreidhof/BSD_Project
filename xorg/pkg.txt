@@ -1,0 +1,6 @@
+xorg
+drm-kmod
+libva-intel-driver
+mesa-libs
+mesa-dri
+
