@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 p="pkg.txt"
-I_dkms=$(doas sysrc kld_list+=i915kms)
+rc_path="/etc/rc.conf"
 
 Install_video() {
 if [ ! -f "$p" ]; then
@@ -24,7 +24,15 @@ do
         echo "Successfully installed: $pkg"
     fi
 done < "$p"
-$I_dkms
+
+
+printf "Do you want to overwrite the existing rc.conf file [y/n] \n"
+read -r choice 
+
+if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
+	doas cp Intel_rc.conf "$rc_path"
+
+fi 	
 exit 0
 }
 Install_video
